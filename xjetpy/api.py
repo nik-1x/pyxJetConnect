@@ -28,7 +28,7 @@ class Account:
         
         :param `ton_address` [str]: TON address
         :param `currency` [str]: Currency of withdraw
-        :param am`ount [float]: Amount of withdraw
+        :param `amount` [float]: Amount of withdraw
         """
         return await self.request(
             method = 'account.withdraw', 
