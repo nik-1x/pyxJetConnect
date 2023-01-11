@@ -1,6 +1,6 @@
 # pyxJetAPI
 
-## Author
+## Authors
 - [@xJetLabs](https://github.com/xJetLabs) (forked from)
 - [@nik-1x](https://www.github.com/nik-1x)
  
