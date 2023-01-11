@@ -79,10 +79,10 @@ class Cheques:
             })
         )
 
-    async def cheque_status(self, cheque_id: int):
+    async def cheque_status(self, cheque_id: str):
         """ Get cheque status 
         
-        :param `cheque_id` [int]: Cheque id
+        :param `cheque_id` [str]: Cheque id
         """
         return await self.request(method = 'cheque.status', params = {'cheque_id': cheque_id})
 
@@ -90,10 +90,10 @@ class Cheques:
         """ Get list of cheques """
         return await self.request(method = 'cheque.list')
 
-    async def cheque_cancel(self, cheque_id: int):
+    async def cheque_cancel(self, cheque_id: str):
         """ Cancel cheque 
         
-        :param `cheque_id` [int]: Cheque id
+        :param `cheque_id` [str]: Cheque id
         """
         return await self.request(method = 'cheque.cancel', json = {'cheque_id': cheque_id})
 
@@ -121,17 +121,17 @@ class Invoices:
         return await self.request(
             method = 'invoice.create', 
             json = {
-                'currency': currency,
+                'currency': currency.lower(),
                 'amount': amount,
                 'description': description,
                 'max_payments': max_payments
             }
         )
 
-    async def invoice_status(self, invoice_id: int):
+    async def invoice_status(self, invoice_id: str):
         """ Get invoice status
         
-        :param `invoice_id` [int]: Invoice id
+        :param `invoice_id` [str]: Invoice id
         """
         return await self.request(method = 'invoice.status', params = {'invoice_id': invoice_id})
 
