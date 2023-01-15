@@ -1,13 +1,13 @@
-from xjetpy import pyxJet
-from xjetpy.constants import xJetNet
+from xjet import JetAPI
+from xjet.constants import xJetNet
 import asyncio
 import json
 
 
-api = pyxJet(
+api = JetAPI(
     api_key="API_KEY",
     private_key="PRIVATE_KEY", 
-    mainnet=xJetNet.TESTNET
+    network='testnet'
 )
 
 

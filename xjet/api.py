@@ -1,3 +1,23 @@
+
+class System:
+
+    """ System class.
+
+    Available methods:
+
+    * `currencies` - Get list of currencies
+
+    """
+
+    async def currencies(self):
+        """ Get list of currencies
+
+        :return: List of currencies
+
+        """
+        return await self.request(method = 'system.currencies')
+
+
 class Account:
 
     """ Account methods wrapper. 
@@ -35,6 +55,15 @@ class Account:
             json = self.sign_message({
                 'ton_address': ton_address, 'currency': currency, 'amount': amount
             })
+        )
+
+    async def operations(self, limit: int = 100, offset: int = 0):
+        """ Get operations history """
+        return await self.request(
+            method = 'account.operations',
+            json = {
+                'limit': limit, 'offset': offset
+            }
         )
 
 

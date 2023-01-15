@@ -2,22 +2,24 @@ import time
 import json
 
 from .constants import xJetNet
-from .api import Account, Cheques, Invoices
+from .api import Account, Cheques, Invoices, System
 
 from nacl.signing import SigningKey
 from httpx import AsyncClient
 
-class pyxJet(Account, Cheques, Invoices):
+
+class JetAPI(Account, Cheques, Invoices, System):
 
     """
-    Class for working with t.me/xjetswapbot API.
+    Class for working with t.me/xJetSwapBot API.
 
     :author: Nick [t.me/crypt_nick]
-    
+    :author: Doc. Delpy [t.me/delpydoc]
+
     :license: GNUv3
     """
 
-    def __init__(self, api_key: str, private_key: str, mainnet: bool or xJetNet = True):
+    def __init__(self, api_key: str, private_key: str = None, network: str = 'mainnet'):
         """
         Class initialization.
 
@@ -26,7 +28,7 @@ class pyxJet(Account, Cheques, Invoices):
         :param `mainnet` [bool or `xJetNet`]: Mainnet or testnet (`True`/`xJetNet.MAINNET` for mainnet, else - `False`/`xJetNet.TESTNET`)
         """
         self.api_key = api_key
-        self.host = xJetNet.MAINNET if mainnet else xJetNet.TESTNET
+        self.host = getattr(xJetNet, network.upper())
         self.private_key = private_key
         self.client = AsyncClient(headers={'X-API-Key': self.api_key})
 
