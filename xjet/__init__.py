@@ -29,7 +29,7 @@ class JetAPI(Account, Cheques, Invoices, System):
         """
         self.api_key = api_key
         self.host = getattr(xJetNet, network.upper())
-        self.private_key = private_key
+        self.private_key = bytes.fromhex(private_key) if private_key else None
         self.client = AsyncClient(headers={'X-API-Key': self.api_key})
 
     async def request(self, method: str, **kwargs):
