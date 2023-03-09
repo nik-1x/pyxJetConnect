@@ -4,7 +4,7 @@ import json
 from .constants import xJetNet
 from .api import Account, Cheques, Invoices
 
-from nacl.signing import SigningKey
+from ecdsa import SigningKey, Ed25519
 from httpx import AsyncClient
 
 class pyxJet(Account, Cheques, Invoices):
@@ -54,8 +54,5 @@ class pyxJet(Account, Cheques, Invoices):
         if 'query_id' not in message: 
             message['query_id'] = int(time.time() + 60) << 16 
 
-        message['signature'] = SigningKey(self.private_key).sign(
-            json.dumps(message).encode()
-        )._signature.hex()
-
+        message['signature'] = SigningKey.from_string(bytes.fromhex(self.private_key), curve=Ed25519).sign(json.dumps(message).encode()).hex()
         return message
