@@ -1,0 +1,24 @@
+# tells pip what build tool to use to build your package
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+# tells pip how to build your pypi webpage & what dependencies to install
+[project]
+name = "xjetpy"
+version = "27.6.23"
+authors = [{name="Sovenok-Hacker"}]
+description = "xJetSwap Bot SDK"
+dependencies = ['httpx', 'ecdsa']
+license = { file="LICENSE" }
+requires-python = ">=3.8"
+keywords = ['TON', 'blockchain', 'telegram', 'cryptocurrency']
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# (OPTIONAL) tells pypi that these urls are where your project's source code and issue tracker reside
+[project.urls]
+"Homepage" = "https://github.com/Sovenok-Hacker/pyxJetConnect"
